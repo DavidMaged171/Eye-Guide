@@ -4,7 +4,8 @@
 [Eye Guide Functions!.](##Eye-Guide-Functions!.)
 
 ## What is Eye Guie?
-> Eye Guide is my Graduation Project at faculty of Computer & Information Science Ain Shames University.<br /> Eye Guide is a mobile app build for helping the blind people and visually impaired in an outdoor environment without depending on     other people. 
+- Eye Guide is my Graduation Project at faculty of Computer & Information Science Ain Shames University.
+- Eye Guide is a mobile app build for helping the blind people and visually impaired in an outdoor environment without depending on other people. 
 
 ## Eye Guide Functions!.
 - Guidance feature.
