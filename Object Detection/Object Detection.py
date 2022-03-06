@@ -1,9 +1,12 @@
 import cv2
+def distance_to_camera(knownWidth, focalLength, perWidth):
+	# compute and return the distance from the maker to the camera
+	return (knownWidth * focalLength) / perWidth
 
 cap=cv2.VideoCapture(0)
 cap.set(3,640)
 cap.set(4,480)
-
+knownDistance=24
 classNames=[]
 classFile='coco.names'
 with open(classFile,'rt') as f:
