@@ -25,7 +25,7 @@ def distance_to_camera(knownWidth, focalLength, perWidth):
 
 # initialize the known distance from the camera to the object, which
 # in this case is 24 inches
-KNOWN_DISTANCE = 24.0
+KNOWN_DISTANCE = 5.0
 # initialize the known object width, which in this case, the piece of
 # paper is 12 inches wide
 KNOWN_WIDTH = 11.0
@@ -47,7 +47,7 @@ for imagePath in sorted(paths.list_images("images")):
     box = cv2.cv.BoxPoints(marker) if imutils.is_cv2() else cv2.boxPoints(marker)
     box = np.int0(box)
     cv2.drawContours(image, [box], -1, (0, 255, 0), 2)
-    cv2.putText(image, "%.2fft" % (inches / 12),
+    cv2.putText(image, "%.2fft" % (inches /12),
                 (image.shape[1] - 200, image.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
                 2.0, (0, 255, 0), 3)
     cv2.imshow("image", image)
