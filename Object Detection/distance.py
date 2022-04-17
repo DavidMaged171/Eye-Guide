@@ -3,6 +3,23 @@ import numpy as np
 import imutils
 import cv2
 
+def FocalLength (measured_distance, real_width, width_in_rf_image):
+    focal_length = (width_in_rf_image * measured_distance) / real_width
+    return focal_length
+
+
+def Distance_finder(Focal_Length, real_face_width, face_width_in_frame):
+    """
+    This Function simply Estimates the distance between object and camera using arguments(Focal_Length, Actual_object_width, Object_width_in_the_image)
+    :param1 Focal_length(float): return by the Focal_Length_Finder function
+
+    :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
+    :param3 object_Width_Frame(int): width of object in the image(frame in our case, using Video feed)
+    :return Distance(float) : distance Estimated
+
+    """
+    distance = (real_face_width * Focal_Length) / face_width_in_frame
+    return distance
 
 def find_marker(image):
     # convert the image to grayscale, blur it, and detect edges
@@ -25,10 +42,10 @@ def distance_to_camera(knownWidth, focalLength, perWidth):
 
 # initialize the known distance from the camera to the object, which
 # in this case is 24 inches
-KNOWN_DISTANCE = 5.0
+KNOWN_DISTANCE = 30
 # initialize the known object width, which in this case, the piece of
 # paper is 12 inches wide
-KNOWN_WIDTH = 11.0
+KNOWN_WIDTH = 5.7
 # load the first image that contains an object that is KNOWN TO BE 2 feet
 # from our camera, then find the paper marker in the image, and initialize
 # the focal length
@@ -42,7 +59,7 @@ for imagePath in sorted(paths.list_images("images")):
     # distance to the marker from the camera
     image = cv2.imread(imagePath)
     marker = find_marker(image)
-    inches = distance_to_camera(KNOWN_WIDTH, focalLength, marker[1][0])
+    inches = Distance_finder(KNOWN_WIDTH, focalLength, marker[1][0])
     # draw a bounding box around the image and display it
     box = cv2.cv.BoxPoints(marker) if imutils.is_cv2() else cv2.boxPoints(marker)
     box = np.int0(box)
